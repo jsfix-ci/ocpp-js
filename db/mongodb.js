@@ -151,6 +151,9 @@ class MongoDB {
         var mongoConf = config.get('mongodb');
         this.url = mongoConf.url;
         if(!instance) {
+            /* TODO: JSFIX could not patch the breaking change:
+            BREAKING CHANGE: mongoose.connect() returns a promise, removed MongooseThenable #5796 
+            Suggested fix: Only relevant if you depend on the return value being a reference to the mongoose object. In that case, you need to modify the usages of the return value to get the mongoose object from somewhere else. */
             mongoose.connect(this.url).then(
                () => {
                     // Ready to use
